@@ -1,0 +1,27 @@
+This was run against Account.RestService.Lib (Class library project) and migration will stored in this Account.RestService.Lib.
+
+Default project choosen Account.RestService.Lib in Package Manager Console.
+
+intialCreate
+
+PM> dotnet ef migrations add  intialCreate --startup-project C:\DotNetCoreProjects\MicroServiceProjects\VehicleTestDrive.API\VehicleTestDrive.All\MicroService\Account\src\Account.RestService\Account.RestService\Vtd.Account.RestService.Api.csproj --project  C:\DotNetCoreProjects\MicroServiceProjects\VehicleTestDrive.API\VehicleTestDrive.All\Vtd.Account.RestService.Lib\Vtd.Account.RestService.Lib.csproj --context AccountDBContext
+Build started...
+Build succeeded.
+Done. To undo this action, use 'ef migrations remove'
+PM> update-database   -context AccountDBContext
+Build started...
+Build succeeded.
+Done.
+PM>
+
+Add foreign key to USer table migration
+
+PM> dotnet ef migrations add  addFKtoUser --startup-project C:\DotNetCoreProjects\MicroServiceProjects\VehicleTestDrive.API\VehicleTestDrive.All\MicroService\Account\src\Account.RestService\Account.RestService\Vtd.Account.RestService.Api.csproj --project  C:\DotNetCoreProjects\MicroServiceProjects\VehicleTestDrive.API\VehicleTestDrive.All\Vtd.Account.RestService.Lib\Vtd.Account.RestService.Lib.csproj --context AccountDBContext
+Build started...
+Build succeeded.
+Done. To undo this action, use 'ef migrations remove'
+PM> update-database   -context AccountDBContext
+Build started...
+Build succeeded.
+Done.
+PM> 

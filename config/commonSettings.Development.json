@@ -1,0 +1,21 @@
+{
+  "ConnectionStrings": {
+    "AccountDBContext": "Server=C830LX065472536;Initial Catalog=Account;Trusted_Connection=True;Connection Timeout=30;",
+    "VehicleDBContext": "Server=C830LX065472536;Initial Catalog=Vehicle;Trusted_Connection=True;Connection Timeout=30;",
+    "CustomerDBContext": "Server=C830LX065472536;Initial Catalog=Customer;Trusted_Connection=True;Connection Timeout=30;",
+	 },
+  "ServiceBus":{
+	"VtdAccountSBConn": "Endpoint=sb://vtdaccountsb.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=iRsgHwmeXIChJW1RNqJcmXRaBhHA2fZZuMRTu3fDfmw=",
+	"VtdAccountSBQueueName": "vtduserregisterq",
+  },
+  "JWT": {
+    "Key": "Secret key gores here.",
+    "Issuer": "https://www.google.com",
+    "Audience": "www.google.com",
+  },
+  
+  "ApplicationInsights": {
+    "ConnectionString": "InstrumentationKey=36e600e7-a9de-48a1-a999-8ddf3f5c4cf4;IngestionEndpoint=https://southeastasia-1.in.applicationinsights.azure.com/;LiveEndpoint=https://southeastasia.livediagnostics.monitor.azure.com/",
+    "InstrumentationKey": "36e600e7-a9de-48a1-a999-8ddf3f5c4cf4",
+  }
+}

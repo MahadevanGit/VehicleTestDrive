@@ -1,0 +1,13 @@
+This was run against Vehicle.RestService.Lib (Class library project) and migration will stored in this Vehicle.RestService.Lib.
+
+Default project choosen Vehicle.RestService.Lib in Package Manager Console.
+
+1)PM> dotnet ef migrations add  intialCreate --startup-project C:\DotNetCoreProjects\MicroServiceProjects\VehicleTestDrive.API\VehicleTestDrive.All\MicroService\Vehicle\src\Vehicle.RestService\Vehicle.RestService.csproj --project Vehicle.RestService.Lib  --context VehicleDBContext
+Build started...
+Build succeeded.
+Done. To undo this action, use 'ef migrations remove'
+
+2)update-database   -context VehicleDBContext
+Build started...
+Build succeeded.
+Done.

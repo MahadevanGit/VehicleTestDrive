@@ -1,0 +1,102 @@
+This was run against Customer.RestService.Lib (Class library project) and migration will stored in this Customer.RestService.Lib.
+
+Default project choosen Customer.RestService.Lib in Package Manager Console.
+
+PM> dotnet ef migrations add  intialCreate --project Customer.RestService.Lib  --context CustomerDBContext
+Build started...
+Build succeeded.
+Unable to create an object of type 'CustomerDBContext'. For the different patterns supported at design time, see https://go.microsoft.com/fwlink/?linkid=851728
+PM> dotnet ef migrations add  intialCreate --startup-project Customer.RestService.Lib --project Customer.RestService.Lib  --context CustomerDBContext
+Build started...
+Build succeeded.
+Unable to create an object of type 'CustomerDBContext'. For the different patterns supported at design time, see https://go.microsoft.com/fwlink/?linkid=851728
+PM> dotnet ef --startup-project Customer.RestService.Lib migrations add  intialCreate    --context CustomerDBContext
+Build started...
+Build succeeded.
+Unable to create an object of type 'CustomerDBContext'. For the different patterns supported at design time, see https://go.microsoft.com/fwlink/?linkid=851728
+PM> dotnet ef --startup-project Customer.RestService.Lib migrations add  intialCreate 
+Build started...
+Build succeeded.
+More than one DbContext was found. Specify which one to use. Use the '-Context' parameter for PowerShell commands and the '--context' parameter for dotnet commands.
+PM> dotnet ef --startup-project Customer.RestService.Lib migrations add  intialCreate    --context CustomerDBContext
+Build started...
+Build succeeded.
+Unable to create an object of type 'CustomerDBContext'. For the different patterns supported at design time, see https://go.microsoft.com/fwlink/?linkid=851728
+TO SOLVE different patterns : added --startup-project point to rest service
+PM> dotnet ef migrations add  intialCreate --startup-project C:\DotNetCoreProjects\MicroServiceProjects\VehicleTestDrive.API\VehicleTestDrive.All\MicroService\Customer\src\Customer.RestService\Customer.RestService.csproj --project Customer.RestService.Lib  --context CustomerDBContext
+Build started...
+Build succeeded.
+Your startup project 'Customer.RestService' doesn't reference Microsoft.EntityFrameworkCore.Design. This package is required for the Entity Framework Core Tools to work. Ensure your startup project is correct, install the package, and try again.
+PM> dotnet ef migrations add  intialCreate --startup-project C:\DotNetCoreProjects\MicroServiceProjects\VehicleTestDrive.API\VehicleTestDrive.All\MicroService\Customer\src\Customer.RestService\Customer.RestService.csproj --project Customer.RestService.Lib  --context CustomerDBContext
+Build started...
+Build succeeded.
+Your startup project 'Customer.RestService' doesn't reference Microsoft.EntityFrameworkCore.Design. This package is required for the Entity Framework Core Tools to work. Ensure your startup project is correct, install the package, and try again.
+TO SOLVE doesn't reference Microsoft.EntityFrameworkCore.Design : added Microsoft.EntityFrameworkCore.Design package to rest service
+PM> dotnet ef migrations add  intialCreate --startup-project C:\DotNetCoreProjects\MicroServiceProjects\VehicleTestDrive.API\VehicleTestDrive.All\MicroService\Customer\src\Customer.RestService\Customer.RestService.csproj --project Customer.RestService.Lib  --context CustomerDBContext
+Build started...
+Build succeeded.
+System.ArgumentNullException: Value cannot be null. (Parameter 'connectionString')
+   at Microsoft.EntityFrameworkCore.Utilities.Check.NotEmpty(String value, String parameterName)
+   at Microsoft.EntityFrameworkCore.SqlServerDbContextOptionsExtensions.UseSqlServer(DbContextOptionsBuilder optionsBuilder, String connectionString, Action`1 sqlServerOptionsAction)
+   at Customer.RestService.Startup.<ConfigureServices>b__4_0(DbContextOptionsBuilder options) in C:\DotNetCoreProjects\MicroServiceProjects\VehicleTestDrive.API\VehicleTestDrive.All\MicroService\Customer\src\Customer.RestService\Startup.cs:line 30
+   at Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.<>c__DisplayClass1_0`2.<AddDbContext>b__0(IServiceProvider p, DbContextOptionsBuilder b)
+   at Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.CreateDbContextOptions[TContext](IServiceProvider applicationServiceProvider, Action`2 optionsAction)
+   at Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.<>c__DisplayClass17_0`1.<AddCoreServices>b__0(IServiceProvider p)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.<>c__17`1.<AddCoreServices>b__17_1(IServiceProvider p)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitIEnumerable(IEnumerableCallSite enumerableCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitCache(ServiceCallSite callSite, RuntimeResolverContext context, ServiceProviderEngineScope serviceProviderEngine, RuntimeResolverLock lockType)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitScopeCache(ServiceCallSite callSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProvider.GetService(Type serviceType, ServiceProviderEngineScope serviceProviderEngineScope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.ServiceProviderEngineScope.GetService(Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetServices[T](IServiceProvider provider)
+   at Microsoft.EntityFrameworkCore.Design.Internal.DbContextOperations.FindContextTypes()
+   at Microsoft.EntityFrameworkCore.Design.Internal.DbContextOperations.FindContextType(String name)
+   at Microsoft.EntityFrameworkCore.Design.Internal.DbContextOperations.CreateContext(String contextType)
+   at Microsoft.EntityFrameworkCore.Design.Internal.MigrationsOperations.AddMigration(String name, String outputDir, String contextType, String namespace)
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.AddMigrationImpl(String name, String outputDir, String contextType, String namespace)
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.AddMigration.<>c__DisplayClass0_0.<.ctor>b__0()
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.OperationBase.<>c__DisplayClass3_0`1.<Execute>b__0()
+   at Microsoft.EntityFrameworkCore.Design.OperationExecutor.OperationBase.Execute(Action action)
+Value cannot be null. (Parameter 'connectionString')
+TO SOLVE System.ArgumentNullException: Value cannot be null. (Parameter 'connectionString') : Added connectionString value into config file.
+PM> dotnet ef migrations add  intialCreate --startup-project C:\DotNetCoreProjects\MicroServiceProjects\VehicleTestDrive.API\VehicleTestDrive.All\MicroService\Customer\src\Customer.RestService\Customer.RestService.csproj --project Customer.RestService.Lib  --context CustomerDBContext
+Build started...
+Build succeeded.
+Done. To undo this action, use 'ef migrations remove'
+PM> update-database   -context CustomerDBContext
+Build started...
+Build succeeded.
+Done.
+PM>
+
+Added UserId into customer table
+==================================
+PM> dotnet ef migrations add  addedUserIdColumn --startup-project C:\DotNetCoreProjects\MicroServiceProjects\VehicleTestDrive.API\VehicleTestDrive.All\MicroService\Customer\src\Customer.RestService\Vtd.Customer.RestService.Api.csproj --project C:\DotNetCoreProjects\MicroServiceProjects\VehicleTestDrive.API\VehicleTestDrive.All\Vtd.Customer.RestService.Lib\Vtd.Customer.RestService.Lib.csproj  --context CustomerDBContext
+Build started...
+Build succeeded.
+Done. To undo this action, use 'ef migrations remove'
+PM> update-database   -context CustomerDBContext
+Build started...
+Build succeeded.
+Done.
+PM> 
