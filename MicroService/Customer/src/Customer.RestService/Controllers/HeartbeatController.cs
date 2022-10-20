@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace Vehicle.RestService.Controllers
+namespace Vtd.Customer.RestService.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -14,18 +13,18 @@ namespace Vehicle.RestService.Controllers
     {
         // GET: api/<HeartbeatController>
         /// <summary>
-        /// To find Vtd.Vehicle.RestService.Api is running?
+        /// To find Vtd.Customer.RestService.Api is running?
         /// </summary>
-        /// <returns> Vtd.Vehicle.RestService.Api is Running. </returns>
+        /// <returns> Vtd.Customer.RestService.Api is Running. </returns>
         /// <remarks>
         /// Sample request api/Heartbeat
         /// </remarks>
         [HttpGet]
-        
+
 
         public string Get()
         {
-            return "Vtd.Vehicle.RestService.Api is Running.";
+            return "Vtd.Customer.RestService.Api is Running.";
         }
     }
 }

@@ -6,7 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 //using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
+using System.IO;
+using System.Reflection;
 using System.Text;
 using Vtd.Account.RestService.Lib.Domain.DBContext;
 using Vtd.Account.RestService.Lib.Domain.Repository;
@@ -32,6 +35,18 @@ namespace Account.RestService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "V1",
+                    Title = " Account Rest service",
+                    Description = "API for CRUD operation of User entity"
+                });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
+            });
             services.AddDbContext<AccountDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AccountDBContext"),
                sqlOptions =>
                {
@@ -82,6 +97,13 @@ namespace Account.RestService
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("swagger/v1/swagger.json", "Account Rest service V1");
+                c.RoutePrefix = string.Empty;
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

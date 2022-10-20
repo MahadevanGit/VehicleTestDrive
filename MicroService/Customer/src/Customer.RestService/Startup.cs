@@ -5,7 +5,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 using System;
+using System.IO;
+using System.Reflection;
 
 namespace Customer.RestService
 {
@@ -27,6 +30,19 @@ namespace Customer.RestService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen(options =>
+            {
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "V1",
+                    Title = " Customer Rest service",
+                    Description = "API for CRUD operation of Customer entity"
+                });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
+            });
+
             services.AddDbContext<CustomerDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("CustomerDBContext"),
                 sqlOptions =>
                 {
@@ -41,6 +57,12 @@ namespace Customer.RestService
         [Obsolete]
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("swagger/v1/swagger.json", "Customer Rest service V1");
+                c.RoutePrefix = string.Empty;
+            });
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

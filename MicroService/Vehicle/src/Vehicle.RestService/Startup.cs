@@ -9,9 +9,12 @@ using Microsoft.Extensions.DependencyInjection;
 //using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Vehicle.RestService.Lib.Domain.DBContext;
@@ -38,6 +41,18 @@ namespace Vehicle.RestService
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddSwaggerGen(options =>
+            {
+            options.SwaggerDoc("v1", new OpenApiInfo{
+                    Version = "V1",
+                    Title = " Vehicle Rest service",
+                    Description = "API for CRUD operstion of Vehicle entity"
+            });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
+            });
 
             services.AddAuthentication(
                 authOptions =>
@@ -83,6 +98,13 @@ namespace Vehicle.RestService
         [Obsolete]
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("swagger/v1/swagger.json", "Vehicle Rest service V1");
+                c.RoutePrefix = string.Empty;
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -18,7 +18,14 @@ namespace Account.RestService.Controllers
         {
             _logger = logger;
         }
-        // GET: api/<Heartbeat>
+
+        /// <summary>
+        /// To find Vtd.Account.RestService.Api is running?
+        /// </summary>
+        /// <returns> Vtd.Account.RestService.Api is Running. </returns>
+        /// <remarks>
+        /// Sample request api/Heartbeat
+        /// </remarks>
         [HttpGet]
         public string Get()
         {
