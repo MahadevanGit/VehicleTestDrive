@@ -1,0 +1,14 @@
+https://localhost:44361/api/user/authenticate
+
+request :
+{
+    "name": "user1",
+    "password":"password1"
+}
+
+response :
+
+{
+    "currentToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InVzZXIxIiwibmJmIjoxNjYzMzEwNjU5LCJleHAiOjE2NjMzMTA3MTksImlhdCI6MTY2MzMxMDY1OX0.HiLQ2uZ5nhk8yBQF8M449NzR0ewDx4H3sx9btwdHqmg",
+    "refreshToken": null
+}
