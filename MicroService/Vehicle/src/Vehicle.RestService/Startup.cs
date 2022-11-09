@@ -44,11 +44,37 @@ namespace Vehicle.RestService
 
             services.AddSwaggerGen(options =>
             {
-            options.SwaggerDoc("v1", new OpenApiInfo{
+                options.SwaggerDoc("v1", new OpenApiInfo
+                {
                     Version = "V1",
                     Title = " Vehicle Rest service",
                     Description = "API for CRUD operstion of Vehicle entity"
-            });
+                });
+
+                options.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.Http,
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Scheme = "bearer"
+                });
+
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "bearer"
+                        }
+                    },
+                         new List<string>()
+                    }
+
+                });
+
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 options.IncludeXmlComments(xmlPath);

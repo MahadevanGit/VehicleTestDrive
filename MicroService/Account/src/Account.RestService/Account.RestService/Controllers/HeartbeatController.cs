@@ -31,7 +31,31 @@ namespace Account.RestService.Controllers
         {
             var logName = "HearBeatController";
             _logger.LogInformation($"Name : {logName} , Information : Vtd.Account.RestService.Api is running.");
+            Test test = new Test();
+            test.id = 100;
+            test.name = "Frist test";
+            test.description = "First test case";
+            Test test1 = new Test();
+            test1 = null;
+
+            _logger.LogInformation($"Test class object : {Newtonsoft.Json.JsonConvert.SerializeObject(test)}");
+            _logger.LogInformation($"Test1 class object : {Newtonsoft.Json.JsonConvert.SerializeObject(test1.id)}");
+
             return "Vtd.Account.RestService.Api is running.";
+        }
+
+        public class Test
+        {
+            public int id { get; set; }
+            public string name { get; set; }
+            public string description { get; set; }
+
+            public class NewTest
+            {
+                public int id { get; set; }
+                public string name { get; set; }
+                public string description { get; set; }
+            }
         }
     }
 }
