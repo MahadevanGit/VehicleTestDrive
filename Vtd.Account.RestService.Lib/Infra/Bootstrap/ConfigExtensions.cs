@@ -42,7 +42,7 @@ namespace Vtd.Account.RestService.Lib.Infra.Bootstrap
         public static string FindSharedConfig(string childPath)
         {
             string gitRoot = FindGitRoot(childPath);
-            string configDir = Path.Combine(gitRoot ?? string.Empty, "C:\\DotNetCoreProjects\\MicroServiceProjects\\VehicleTestDrive.API\\" + $"VehicleTestDrive.All{Path.DirectorySeparatorChar}config");
+            string configDir = Path.Combine(gitRoot ?? string.Empty, "config");
             return configDir;
         }
 
